@@ -18,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PAGES_TOKEN: ${{ secrets.PAGES_TOKEN }}
 
     steps:
       - name: Checkout
@@ -42,7 +44,15 @@ jobs:
         run: npm run build -- --base=/my-portfolio/
 
       - name: Configure GitHub Pages
+        if: env.PAGES_TOKEN == ''
         uses: actions/configure-pages@v5
+
+      - name: Enable and configure GitHub Pages
+        if: env.PAGES_TOKEN != ''
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+          token: ${{ secrets.PAGES_TOKEN }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
