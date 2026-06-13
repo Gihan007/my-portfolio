@@ -1,72 +1,80 @@
-import { GraduationCap } from 'lucide-react';
-import { education, expertiseHighlights } from '../data/portfolio';
+import { Github, GraduationCap, Linkedin } from 'lucide-react';
+import { aboutSummary, education, expertiseHighlights, profile } from '../data/portfolio';
 import { Reveal } from './Reveal';
 import { SectionHeading } from './SectionHeading';
 
 export function About() {
   return (
-    <section id="about" className="section-light scroll-mt-20 py-24 sm:py-32">
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <Reveal>
-          <SectionHeading
-            label="About"
-            title="AI engineering with a product mindset"
-            description="Practical AI systems from research prototype to production deployment."
-          />
-        </Reveal>
-
-        <div className="mt-16 grid gap-12 lg:grid-cols-5 lg:gap-16">
-          <Reveal className="lg:col-span-3" delay={1}>
-            <div className="space-y-6">
-              {expertiseHighlights.map((paragraph, i) => (
-                <div
-                  key={paragraph.slice(0, 40)}
-                  className="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-violet-200 hover:shadow-md hover:shadow-violet-500/5"
-                >
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-100 text-sm font-bold text-violet-600">
-                      0{i + 1}
-                    </span>
-                    <div className="h-px flex-1 bg-gradient-to-r from-violet-200 to-transparent" />
-                  </div>
-                  <p className="leading-relaxed text-slate-600">{paragraph}</p>
-                </div>
+    <>
+      <section className="border-b border-slate-200/80 bg-white py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.45fr_1fr] lg:items-start">
+          <Reveal>
+            <SectionHeading
+              label="My Expertise"
+              title="AI engineering with a product mindset."
+            />
+          </Reveal>
+          <Reveal delay={1}>
+            <div className="space-y-5 text-lg leading-relaxed text-slate-600">
+              {expertiseHighlights.map((paragraph) => (
+                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
 
-          <Reveal className="lg:col-span-2" delay={2}>
-            <div className="sticky top-28">
-              <h3 className="font-display text-lg font-bold text-slate-900">Education</h3>
-              <div className="mt-6 space-y-4">
-                {education.map((item, i) => (
+      <section className="section-light py-20 sm:py-28">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+            <Reveal>
+              <SectionHeading
+                label="About"
+                title="Practical AI systems from research prototype to production deployment."
+              />
+              <p className="mt-5 text-lg leading-relaxed text-slate-600">{aboutSummary}</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-11 items-center gap-2 rounded-full border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-violet-300 hover:text-violet-700"
+                >
+                  <Github className="h-4 w-4" />
+                  GitHub
+                </a>
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-11 items-center gap-2 rounded-full border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-violet-300 hover:text-violet-700"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={1}>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                {education.map((item) => (
                   <article
                     key={item.school}
-                    className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:border-violet-200 hover:shadow-md"
+                    className="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-violet-200 hover:shadow-md hover:shadow-violet-500/5"
                   >
-                    <div className="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-violet-50 transition group-hover:bg-violet-100" />
-                    <div className="relative flex gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 text-white shadow-md shadow-violet-500/20">
-                        <GraduationCap className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-slate-900">{item.school}</h4>
-                        <p className="mt-1 text-sm font-medium text-violet-600">{item.degree}</p>
-                        <p className="mt-1.5 text-xs text-slate-500">{item.meta}</p>
-                      </div>
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 text-white shadow-md shadow-violet-500/20">
+                      <GraduationCap className="h-5 w-5" />
                     </div>
-                    {i === 0 && (
-                      <span className="absolute right-4 top-4 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-600">
-                        Current
-                      </span>
-                    )}
+                    <h3 className="mt-4 text-xl font-bold text-slate-900">{item.school}</h3>
+                    <p className="mt-2 font-semibold text-violet-600">{item.degree}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.meta}</p>
                   </article>
                 ))}
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

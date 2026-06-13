@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Download, Menu, X } from 'lucide-react';
-import { navLinks, profile } from '../data/portfolio';
+import { profile, tabs, type TabId } from '../data/portfolio';
 
 type NavbarProps = {
-  activeSection: string;
-  onNavigate: (id: string) => void;
+  activeTab: TabId;
+  onSelectTab: (tab: TabId) => void;
 };
 
-export function Navbar({ activeSection, onNavigate }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false);
+export function Navbar({ activeTab, onSelectTab }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const onHero = activeSection === 'home' && !scrolled;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const onHome = activeTab === 'home';
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -25,8 +18,8 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
     };
   }, [mobileOpen]);
 
-  const handleNavigate = (id: string) => {
-    onNavigate(id);
+  const handleSelect = (tab: TabId) => {
+    onSelectTab(tab);
     setMobileOpen(false);
   };
 
@@ -34,45 +27,59 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled || mobileOpen
-            ? 'border-b border-slate-200/60 bg-white/80 shadow-sm shadow-slate-900/5 backdrop-blur-xl'
-            : 'bg-transparent'
+          onHome && !mobileOpen
+            ? 'border-b border-white/10 bg-surface/80 backdrop-blur-xl'
+            : 'border-b border-slate-200/60 bg-white/90 shadow-sm shadow-slate-900/5 backdrop-blur-xl'
         }`}
       >
         <nav className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-5 sm:px-8">
           <button
             type="button"
-            onClick={() => handleNavigate('home')}
+            onClick={() => handleSelect('home')}
             className={`font-display text-xl font-bold transition-colors ${
-              onHero && !mobileOpen ? 'text-white' : 'text-slate-900'
+              onHome && !mobileOpen ? 'text-white' : 'text-slate-900'
             }`}
           >
-            GL<span className="text-violet-500">.</span>
+            {profile.name.split(' ')[0]}
+            <span className="text-violet-500">.</span>
           </button>
 
-          <ul className="hidden items-center gap-1 rounded-full border border-slate-200/80 bg-white/60 p-1.5 shadow-sm backdrop-blur-md md:flex">
-            {navLinks.map((link) => (
-              <li key={link.id}>
-                <button
-                  type="button"
-                  onClick={() => handleNavigate(link.id)}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                    activeSection === link.id
-                      ? 'bg-slate-900 text-white shadow-md'
+          <div
+            role="tablist"
+            aria-label="Portfolio sections"
+            className={`hidden items-center gap-1 rounded-full p-1.5 md:flex ${
+              onHome && !mobileOpen
+                ? 'border border-white/10 bg-white/10 backdrop-blur-md'
+                : 'border border-slate-200/80 bg-white/60 shadow-sm backdrop-blur-md'
+            }`}
+          >
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                onClick={() => handleSelect(tab.id)}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? onHome && !mobileOpen
+                      ? 'bg-white text-slate-900 shadow-md'
+                      : 'bg-slate-900 text-white shadow-md'
+                    : onHome && !mobileOpen
+                      ? 'text-white/80 hover:bg-white/10 hover:text-white'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  {link.label}
-                </button>
-              </li>
+                }`}
+              >
+                {tab.label}
+              </button>
             ))}
-          </ul>
+          </div>
 
           <div className="flex items-center gap-3">
             <a
               href={profile.resume}
               className={`hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition sm:inline-flex ${
-                onHero && !mobileOpen
+                onHome && !mobileOpen
                   ? 'bg-white text-slate-900 hover:bg-violet-50'
                   : 'bg-violet-600 text-white shadow-md shadow-violet-500/20 hover:bg-violet-500'
               }`}
@@ -85,7 +92,7 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
               type="button"
               onClick={() => setMobileOpen((open) => !open)}
               className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border transition md:hidden ${
-                onHero && !mobileOpen
+                onHome && !mobileOpen
                   ? 'border-white/20 text-white hover:bg-white/10'
                   : 'border-slate-200 text-slate-900 hover:bg-slate-50'
               }`}
@@ -95,9 +102,38 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
             </button>
           </div>
         </nav>
+
+        {/* Mobile tab bar */}
+        <div
+          role="tablist"
+          aria-label="Portfolio sections"
+          className={`flex gap-2 overflow-x-auto border-t px-5 py-2.5 md:hidden ${
+            onHome && !mobileOpen ? 'border-white/10' : 'border-slate-200/80'
+          }`}
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              onClick={() => handleSelect(tab.id)}
+              className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition ${
+                activeTab === tab.id
+                  ? onHome && !mobileOpen
+                    ? 'bg-white text-slate-900'
+                    : 'bg-violet-600 text-white'
+                  : onHome && !mobileOpen
+                    ? 'bg-white/10 text-white/80'
+                    : 'bg-slate-100 text-slate-600'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </header>
 
-      {/* Mobile overlay */}
       <div
         className={`fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           mobileOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
@@ -106,7 +142,6 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
         aria-hidden="true"
       />
 
-      {/* Mobile drawer */}
       <div
         className={`fixed inset-y-0 right-0 z-50 w-72 transform border-l border-slate-200 bg-white shadow-2xl transition-transform duration-300 ease-out md:hidden ${
           mobileOpen ? 'translate-x-0' : 'translate-x-full'
@@ -126,18 +161,18 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
           </button>
         </div>
         <ul className="space-y-1 p-4">
-          {navLinks.map((link) => (
-            <li key={link.id}>
+          {tabs.map((tab) => (
+            <li key={tab.id}>
               <button
                 type="button"
-                onClick={() => handleNavigate(link.id)}
+                onClick={() => handleSelect(tab.id)}
                 className={`block w-full rounded-xl px-4 py-3.5 text-left text-sm font-medium transition ${
-                  activeSection === link.id
+                  activeTab === tab.id
                     ? 'bg-violet-50 text-violet-700'
                     : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
-                {link.label}
+                {tab.label}
               </button>
             </li>
           ))}

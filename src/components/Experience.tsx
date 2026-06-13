@@ -4,19 +4,21 @@ import { Reveal } from './Reveal';
 import { SectionHeading } from './SectionHeading';
 
 export function Experience() {
+  const currentIndex = experience.length - 1;
+
   return (
-    <section id="experience" className="relative scroll-mt-20 overflow-hidden bg-slate-950 py-24 sm:py-32">
+    <section className="relative min-h-[70vh] overflow-hidden bg-slate-950 pb-20 pt-36 lg:pt-32">
       <div className="pointer-events-none absolute inset-0 bg-grid-pattern bg-grid opacity-20" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
             label="Experience"
-            title="Roles across AI engineering, research, and product building"
+            title="Roles across AI engineering, research, and startup product building."
             dark
           />
         </Reveal>
 
-        <div className="relative mt-16">
+        <div className="relative mt-14">
           <div className="absolute bottom-0 left-[19px] top-0 hidden w-px bg-gradient-to-b from-violet-500/50 via-cyan-500/30 to-transparent md:block" />
 
           <div className="space-y-6">
@@ -24,7 +26,7 @@ export function Experience() {
               <Reveal key={`${item.role}-${item.company}`} delay={(index % 3) as 0 | 1 | 2}>
                 <article className="group relative md:pl-14">
                   <div className="absolute left-3 top-8 hidden h-4 w-4 rounded-full border-2 border-violet-500 bg-slate-950 shadow-[0_0_12px_rgba(139,92,246,0.5)] md:block">
-                    {index === 0 && (
+                    {index === currentIndex && (
                       <span className="absolute inset-0 animate-ping rounded-full bg-violet-400 opacity-40" />
                     )}
                   </div>
@@ -33,7 +35,7 @@ export function Experience() {
                     <div className="p-6 sm:p-8">
                       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                         <div>
-                          {index === 0 && (
+                          {index === currentIndex && (
                             <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
                               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                               Current Role
@@ -60,7 +62,7 @@ export function Experience() {
                           {item.bullets.map((bullet) => (
                             <li
                               key={bullet}
-                              className="flex gap-3 text-sm text-slate-400 before:mt-2 before:h-1 before:w-1 before:shrink-0 before:rounded-full before:bg-cyan-400"
+                              className="border-l border-violet-500/30 pl-4 text-sm leading-relaxed text-slate-400"
                             >
                               {bullet}
                             </li>
@@ -72,7 +74,7 @@ export function Experience() {
                         {item.stack.map((tool) => (
                           <span
                             key={tool}
-                            className="rounded-lg border border-white/5 bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-300 transition group-hover:border-violet-500/20"
+                            className="rounded-lg border border-white/5 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-200"
                           >
                             {tool}
                           </span>
