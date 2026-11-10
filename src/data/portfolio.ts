@@ -19,7 +19,7 @@ export const profile = {
   phone: '+94 76 991 9877',
   github: 'https://github.com/Gihan007',
   linkedin: 'https://www.linkedin.com/in/gihan-lakmal-22964526a/',
-  resume: '/AI-ML-Developer-Gihan-Lakmal.pdf',
+  resume: `${import.meta.env.BASE_URL}AI-ML-Developer-Gihan-Lakmal.pdf`,
   summary:
     'AI/ML Engineer and researcher with nearly 2 years of experience designing, building, and deploying agentic AI, multi-agent, machine learning, and generative AI solutions, with end-to-end ownership across model integration, FastAPI back ends, databases, Docker, cloud deployment, QA, and monitoring.',
 };
