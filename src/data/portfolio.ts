@@ -11,9 +11,9 @@ import {
 
 export const profile = {
   name: 'Gihan Lakmal',
-  role: 'AI / ML Engineer',
+  role: 'AI Engineer',
   tagline:
-    'Computer Science specialized in AI | RAG, LLMs, MLOps, multi-agent systems, Data Science, and Product Engineering',
+    'BSc (Hons) Computer Science, AI specialization | Agentic AI, LangGraph, RAG, MLOps, and production client delivery',
   location: 'Colombo 08, Sri Lanka',
   email: 'gihanlakmal007@gmail.com',
   phone: '+94 76 991 9877',
@@ -21,7 +21,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/gihan-lakmal-22964526a/',
   resume: '/AI-ML-Developer-Gihan-Lakmal.pdf',
   summary:
-    'AI/ML Engineer with nearly 2 years of experience developing, deploying, and optimizing machine learning, deep learning, and generative AI solutions for real-world client and research projects.',
+    'AI/ML Engineer and researcher with nearly 2 years of experience designing, building, and deploying agentic AI, multi-agent, machine learning, and generative AI solutions, with end-to-end ownership across model integration, FastAPI back ends, databases, Docker, cloud deployment, QA, and monitoring.',
 };
 
 export const stats = [
@@ -83,6 +83,11 @@ export const skills: SkillCategory[] = [
       'OpenAI',
       'Gemini',
       'LangSmith',
+      'ReAct agents',
+      'Supervisor graphs',
+      'Tool / function calling',
+      'Model Context Protocol (MCP)',
+      'LLM fine-tuning (PEFT, LoRA, QLoRA)',
     ],
   },
   {
@@ -99,6 +104,7 @@ export const skills: SkillCategory[] = [
       'SQL',
       'Cypher',
       'Market-data APIs',
+      'MongoDB',
     ],
   },
   {
@@ -116,6 +122,11 @@ export const skills: SkillCategory[] = [
       'Nginx',
       'Monitoring and logging',
       'JWT authentication',
+      'MLflow',
+      'DVC',
+      'Prometheus',
+      'Grafana',
+      'Jenkins',
     ],
   },
   {
@@ -138,14 +149,20 @@ export const skills: SkillCategory[] = [
     title: 'Software',
     items: [
       'Python',
+      'Java',
       'JavaScript',
+      'C / C#',
       'React',
+      'Next.js',
       'Vite',
       'SQLAlchemy',
       'Pydantic',
       'Alembic',
       'Pandas',
       'NumPy',
+      'TensorFlow',
+      'Keras',
+      'Scikit-learn',
       'REST APIs',
     ],
   },
@@ -290,6 +307,20 @@ export const featuredProjects: FeaturedProject[] = [
       'async/await',
     ],
   },
+  {
+    title: 'Construction Worker Safety Monitoring System',
+    tag: 'Client Project',
+    privateNotice: '🔒 Cannot share client project code',
+    image:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Built a computer vision safety compliance MVP for an Indian client that detects workers, helmets, and safety vests from images and video.',
+    impact: [
+      'Detected workers, helmets, and safety vests from images and video using YOLOv8.',
+      'Applied safety compliance rules to classify safe and unsafe conditions and generate annotated outputs.',
+    ],
+    stack: ['YOLOv8', 'Ultralytics', 'Python', 'FastAPI', 'OpenCV', 'Docker', 'PostgreSQL'],
+  },
 ];
 
 export type GitHubProject = {
@@ -428,64 +459,54 @@ export type ExperienceItem = {
 export const experience: ExperienceItem[] = [
   {
     role: 'AI Research Assistant',
-    company: 'Sri Lankan native language AI research',
-    date: 'Nov 2024 - June 2025',
+    company: 'AI Research Environment',
+    date: 'Nov 2024 - Jun 2025',
     details:
-      'Worked on generative AI models for Sinhala and Tamil, contributing to a 40 million word corpus and applying data preprocessing, computer vision, and audio generation techniques.',
-    stack: ['NLP', 'Data Preprocessing', 'Generative AI', 'Computer Vision'],
+      'Worked on generative AI models for Sinhala and Tamil, collecting and processing a 40 million word bilingual corpus to improve relevance for Sri Lankan language users.',
+    bullets: [
+      'Applied generative AI, computer vision, and audio generation techniques to native language research problems.',
+      'Used parameter-efficient fine-tuning approaches including PEFT, LoRA, and QLoRA for language model adaptation and experimentation.',
+    ],
+    stack: ['NLP', 'Generative AI', 'Computer Vision', 'PEFT', 'LoRA', 'QLoRA'],
   },
   {
-    role: 'AI Intern',
-    company: 'SenzMate AIOT',
-    date: 'July 2025 - January 2026',
+    role: 'AI/ML Trainee Associate Engineer',
+    company: 'SenzMate AIoT',
+    date: 'Jul 2025 - Jul 2026',
     details:
-      'Worked on AI engineering tasks across modular AI nodes, workflow pipelines, RAG systems, backend development, and production-focused experimentation for the Interplay Autonomous Platform.',
+      'Built agentic AI and finance-focused multi-agent solutions for the Interplay Autonomous Platform and client projects, with end-to-end ownership from agent architecture to deployment.',
     bullets: [
-      'Worked on the Interplay Platform auto workflow.',
-      'Developed the SenzChat agentic bot from scratch.',
+      'Designed modular AI agent nodes and autonomous workflow pipelines, enabling multi-agent task routing, memory management, and decision making.',
+      'Built finance-focused multi-agent solutions using LangChain, LangGraph, and modern LLM orchestration frameworks with custom tools and RAG pipelines.',
+      'Delivered client projects with end-to-end ownership covering agent architecture, AI model integration, backend development, deployment, and production optimization.',
+      'Supported scalable API integration, testing, and deployment using FastAPI, Docker, and cloud infrastructure.',
     ],
-    stack: [
-      'Python',
-      'LangChain',
-      'LangGraph',
-      'FastAPI',
-      'RAG',
-      'MLOps',
-      'Agent orchestration',
-      'LLM orchestration',
-      'Cache handling',
-      'Prompting',
-    ],
+    stack: ['Python', 'LangChain', 'LangGraph', 'FastAPI', 'RAG', 'Docker', 'Cloud deployment'],
   },
   {
-    role: 'Associate AI / ML Engineer',
-    company: 'SenzMate AIOT',
-    date: 'January 2026 - Present',
+    role: 'Co-Founder - AI Research & Engineering',
+    company: 'ArcheAI (Part Time)',
+    date: 'Dec 2025 - Present',
     details:
-      'Building production AI systems with finance-focused multi-agent workflows, document intelligence, backend APIs, deployment, monitoring, and optimization for real-world client use cases.',
+      'Co-founded an AI research and engineering startup developing agentic systems for enterprise and client automation, including an agentic WhatsApp bot, insurance fax extraction models, and a voice call agent platform.',
     bullets: [
-      'Worked end to end on the Vinvest FinTech Deep Insight project.',
-      'Working on a Voice AI agent for chatbot experiences.',
+      'Designed complete agent architectures combining LLM orchestration, autonomous task execution, tool integration, and workflow automation.',
+      'Applied RAG, semantic embedding optimization, and hybrid neuro-symbolic workflows to improve contextual reasoning, reliability, and production readiness.',
+      'Contributed across solution architecture, backend engineering, model integration, testing, deployment, and client delivery.',
     ],
-    stack: [
-      'Python',
-      'LangChain',
-      'LangGraph',
-      'FastAPI',
-      'Docker',
-      'MLOps',
-      'Agent orchestration',
-      'LLM orchestration',
-      'Cache handling',
-      'Prompting',
-      'DevOps',
-      'Google Cloud Engineering',
-      'Kubernetes',
-      'Network configs',
-      'CI/CD pipelines',
-      'Deep agents',
-      'React agents',
+    stack: ['Agentic AI', 'LLM orchestration', 'RAG', 'Embeddings', 'Neuro-symbolic workflows', 'FastAPI'],
+  },
+  {
+    role: 'AI Engineer',
+    company: 'VInvest Pvt Ltd (Full Time)',
+    date: 'Jul 2026 - Present',
+    details:
+      'Architecting a fintech multi-agent AI platform on LangGraph, taken from idea to live product with containerized, cloud-deployed, scalable services owned end to end.',
+    bullets: [
+      'Architected the platform with coordinator, planner, supervisor, and specialist agent nodes, using stateful memory with Postgres checkpointing and autonomous task routing for deep financial analysis.',
+      'Took it from idea to live product through DevOps practices, with containerized, cloud-deployed, scalable services.',
     ],
+    stack: ['LangGraph', 'Multi-agent systems', 'PostgreSQL', 'Docker', 'DevOps', 'Cloud deployment'],
   },
 ];
 
@@ -499,16 +520,16 @@ export const education: EducationItem[] = [
   {
     school: 'University of Kelaniya - Sri Lanka',
     degree: 'B.Sc. (Hons) Computer Science, AI Specialization',
-    meta: 'Final semester | GPA 3.61 | 2022 - 2026',
+    meta: 'GPA 3.61 | Jul 2022 - Jul 2026',
   },
   {
     school: 'University of Colombo - Sri Lanka',
     degree: 'Bachelor of Information Technology (External)',
-    meta: '2022 - 2023',
+    meta: 'Jul 2021 - Aug 2022',
   },
   {
     school: 'Nalanda College, Colombo 10',
     degree: 'G.C.E. Advanced Level - Physical Science Stream',
-    meta: 'Combined Mathematics, Physics, Chemistry | Z-score 1.563',
+    meta: 'Z-score 1.563 | 2020',
   },
 ];
